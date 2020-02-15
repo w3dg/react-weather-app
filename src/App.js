@@ -49,7 +49,12 @@ function App() {
               </div>
             </div>
             <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°c</div>
+              <div className="weather-temp">
+                <div className="icon">
+                  <i className={"owf owf-" + weather.weather[0].id}></i>
+                </div>
+                <div className="temp">{Math.round(weather.main.temp)} °C</div>
+              </div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
           </div>

@@ -85,7 +85,7 @@ main {
   text-align: center;
 }
 
-.weather-box .temp {
+.weather-box .weather-temp {
   position: relative;
   display: inline-block;
   margin: 30px auto;
@@ -95,7 +95,7 @@ main {
   padding: 15px 25px;
 
   color: #fff;
-  font-size: 102px;
+  font-size: 72px;
   font-weight: 900;
 
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
