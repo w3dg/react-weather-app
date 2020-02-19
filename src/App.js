@@ -13,14 +13,37 @@ function App() {
         .then(result => {
           setWeather(result);
           setQuery("");
+          console.log(result);
         });
+    }
+  }
+
+  function calcWindDirection(deg) {
+    if (deg === 360 || deg === 0) {
+      return "N";
+    } else if (deg > 0 && deg < 90) {
+      return "NE";
+    } else if (deg === 90) {
+      return "E";
+    } else if (deg > 90 && deg < 180) {
+      return "SE";
+    } else if (deg === 180) {
+      return "S";
+    } else if (deg > 180 && deg < 270) {
+      return "SW";
+    } else if (deg === 270) {
+      return "W";
+    } else if (deg > 270 && deg < 360) {
+      return "NW";
+    } else {
+      return "N/A";
     }
   }
   return (
     <div
       className={
         typeof weather.main != "undefined"
-          ? weather.main.temp > 16
+          ? weather.main.temp > 18
             ? "app warm"
             : "app"
           : "app"
@@ -56,6 +79,13 @@ function App() {
                 <div className="temp">{Math.round(weather.main.temp)} °C</div>
               </div>
               <div className="weather">{weather.weather[0].main}</div>
+            </div>
+            <div className="extra-info">
+              <div className="humidity">Humidity: {weather.main.humidity}%</div>
+              <div className="wind">
+                Wind: {weather.wind.speed.toFixed(1)}m/s from{" "}
+                {calcWindDirection(weather.wind.deg)}
+              </div>
             </div>
           </div>
         ) : (
