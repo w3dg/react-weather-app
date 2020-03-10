@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 const api_key = "e2b67636b902d2fc4320b0f2c059e920";
 const api_base = `https://api.openweathermap.org/data/2.5/`;
 function App() {
@@ -13,7 +12,6 @@ function App() {
         .then(result => {
           setWeather(result);
           setQuery("");
-          console.log(result);
         });
     }
   }
@@ -40,15 +38,7 @@ function App() {
     }
   }
   return (
-    <div
-      className={
-        typeof weather.main != "undefined"
-          ? weather.main.temp > 18
-            ? "app warm"
-            : "app"
-          : "app"
-      }
-    >
+    <div className="app">
       <main>
         <div className="search-box">
           <input
@@ -83,7 +73,7 @@ function App() {
             <div className="extra-info">
               <div className="humidity">Humidity: {weather.main.humidity}%</div>
               <div className="wind">
-                Wind: {weather.wind.speed.toFixed(1)}m/s from{" "}
+                Wind: {weather.wind.speed.toFixed(1)}m/s{" "}
                 {calcWindDirection(weather.wind.deg)}
               </div>
             </div>
