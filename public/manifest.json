@@ -3,12 +3,22 @@
   "name": "Weather-React by DG",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "icon.png",
+      "sizes": "64x64 32x32 24x24 16x16  128x128 512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "64x64 32x32 24x24 16x16  128x128 512x512",
       "type": "image/x-icon"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "64x64 32x32 24x24 16x16 128x128 512x512 192x192",
+      "type": "apple-touch-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#001b1c",
   "background_color": "#045a5c"
