@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const api_key = "e2b67636b902d2fc4320b0f2c059e920";
 const api_base = `https://api.openweathermap.org/data/2.5/`;
+const ipapiUrl = `https://ipapi.co/json`;
+
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      // Set weather for first time based off their location
+      const response = await fetch(ipapiUrl);
+      const json = await response.json();
+      const { city, country_code } = json;
+      console.log(city, country_code);
+      fetch(
+        `${api_base}weather?q=${city}, ${country_code}&units=metric&APPID=${api_key}`
+      )
+        .then(res => res.json())
+        .then(result => {
+          setWeather(result);
+          setQuery("");
+        });
+    })();
+  }, []);
 
   function search(evt) {
     if (evt.key === "Enter") {
@@ -80,7 +100,11 @@ function App() {
           </div>
         ) : (
           <div>
-            <h1 className="no-city">Weather React</h1>
+            <h1 className="no-city">
+              Weather React
+              <br />
+              <small>Loading...</small>
+            </h1>
           </div>
         )}
       </main>
