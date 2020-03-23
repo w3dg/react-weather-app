@@ -11,6 +11,7 @@ This is to make a weather app using React similar to the one or better than the 
 - <a href="https://reactjs.org/">ReactJS</a> ⚛
 - <a href="https://openweathermap.org/api">OpenWeatherAPI</a> 🌤
 - <a href="https://websygen.github.io/owfont/">OpenWeatherFonts</a> ☁
+- <a href="https://feathericons.com/">SVGs from Feather Icons 🎉</a>
 
 ### To get started :-
 

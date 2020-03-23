@@ -73,28 +73,160 @@ function App() {
 
         {typeof weather.main != "undefined" ? (
           <div>
-            <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
-              <div className="date">
-                Lat: {weather.coord.lat}, Lon: {weather.coord.lon}
-              </div>
-            </div>
-            <div className="weather-box">
-              <div className="weather-temp">
-                <div className="icon">
-                  <i className={"owf owf-" + weather.weather[0].id}></i>
+            <div className="wrapfull">
+              <div className="location-box">
+                <div className="location">
+                  {weather.name}, {weather.sys.country}
                 </div>
-                <div className="temp">{Math.round(weather.main.temp)} °C</div>
+                <div className="date">
+                  Lat: {weather.coord.lat}, Lon: {weather.coord.lon}
+                </div>
               </div>
-              <div className="weather">{weather.weather[0].main}</div>
+              <div className="weather-box">
+                <div className="weather-temp">
+                  <div className="icon">
+                    <i className={"owf owf-" + weather.weather[0].id}></i>
+                  </div>
+                  <div className="temp">{Math.round(weather.main.temp)} °C</div>
+                </div>
+                <div className="weather">{weather.weather[0].main}</div>
+              </div>
+              <div className="svgdiv">
+                <p>Scroll down for more details</p>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="48"
+                  height="48"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="8 12 12 16 16 12"></polyline>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                </svg>
+              </div>
             </div>
             <div className="extra-info">
-              <div className="humidity">Humidity: {weather.main.humidity}%</div>
+              {/* <div className="humidity">Humidity: {weather.main.humidity}%</div>
+               */}
               <div className="wind">
-                Wind: {weather.wind.speed.toFixed(1)}m/s{" "}
-                {calcWindDirection(weather.wind.deg)}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="extrasvgs"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+                </svg>
+                <div className="wind">
+                  {weather.wind.speed.toFixed(1)}m/s{" "}
+                  {calcWindDirection(weather.wind.deg)}
+                </div>
+              </div>
+
+              <div className="humidity">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="extrasvgs"
+                >
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+                <div className="humidity">{weather.main.humidity}%</div>
+              </div>
+
+              <div className="visibility">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="extrasvgs"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+
+                <div className="visibility">{weather.visibility / 1000}km</div>
+              </div>
+              <div className="clouds">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="extrasvgs"
+                >
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                </svg>
+
+                <div className="clouds">{weather.clouds.all}%</div>
+              </div>
+              <div className="feels-like">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="extrasvgs"
+                >
+                  <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                </svg>
+
+                <div className="feels-like">{weather.main.feels_like}°C</div>
+              </div>
+
+              <div className="minmax">
+                <div className="mm">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="extrasvgs"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                  <p>/</p>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="extrasvgs"
+                  >
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </div>
+                <div className="minmax">
+                  {weather.main.temp_min}/{weather.main.temp_max} °C
+                </div>
               </div>
             </div>
           </div>
