@@ -58,7 +58,15 @@ function App() {
     }
   }
   return (
-    <div className="app">
+    <div
+      className={
+        typeof weather.main != "undefined"
+          ? weather.main.temp > 18
+            ? "app warm"
+            : "app"
+          : "app"
+      }
+    >
       <main>
         <div className="search-box">
           <input
@@ -225,7 +233,8 @@ function App() {
                   </svg>
                 </div>
                 <div className="minmax">
-                  {weather.main.temp_min}/{weather.main.temp_max} °C
+                  {Math.round(weather.main.temp_min)}/
+                  {Math.round(weather.main.temp_max)} °C
                 </div>
               </div>
             </div>
