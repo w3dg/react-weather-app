@@ -78,7 +78,6 @@ function App() {
             onKeyPress={search}
           />
         </div>
-
         {typeof weather.main != "undefined" ? (
           <div>
             <div className="wrapfull">
@@ -244,7 +243,11 @@ function App() {
             <h1 className="no-city">
               Weather React
               <br />
-              <small>Loading...</small>
+              {Number(weather.cod) !== 404 ? (
+                <small>Loading...</small>
+              ) : (
+                <small>Sorry, please try again.</small>
+              )}
             </h1>
           </div>
         )}
