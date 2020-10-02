@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-const api_key = "e2b67636b902d2fc4320b0f2c059e920";
-const api_base = `https://api.openweathermap.org/data/2.5/`;
 const ipapiUrl = `https://ipapi.co/json`;
-
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
@@ -15,11 +12,12 @@ function App() {
       const { city, country_code } = json;
       console.log(city, country_code);
       fetch(
-        `${api_base}weather?q=${city}, ${country_code}&units=metric&APPID=${api_key}`
+        `https://react-weather-proxy.herokuapp.com/api/v1/weather?q=${city},${country_code}`
       )
-        .then(res => res.json())
-        .then(result => {
-          setWeather(result);
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result.json);
+          setWeather(result.json);
           setQuery("");
         });
     })();
@@ -27,10 +25,12 @@ function App() {
 
   function search(evt) {
     if (evt.key === "Enter") {
-      fetch(`${api_base}weather?q=${query}&units=metric&APPID=${api_key}`)
-        .then(res => res.json())
-        .then(result => {
-          setWeather(result);
+      fetch(
+        `https://react-weather-proxy.herokuapp.com/api/v1/weather?q=${query}`
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          setWeather(result.json);
           setQuery("");
         });
     }
@@ -73,7 +73,7 @@ function App() {
             type="text"
             className="search-bar"
             placeholder="Search for your city..."
-            onChange={e => setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
           />
